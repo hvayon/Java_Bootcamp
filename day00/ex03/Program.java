@@ -1,60 +1,83 @@
 import java.util.Scanner;
 
-class Program{
+class Program {
 	public static void main(String[] args) {
 		Scanner in = new Scanner(System.in);
 		int weeks = 1;
 		//final int MAX_NUMBER_OF_WEEKS = 19;
 		String word;
 		int num;
+		long data = 0; // для записи минимальных значений
 		//int i = 1;
 		for (int i = 1; i <= 18; i++) {
-			//System.out.println(i);
+			//System.out.println("Iter = " + i);
 			if (in.hasNextLine()) {
-				word = in.nextLine();
-				//System.out.println(weeks);
-				if (!word.equals("Week " + weeks)) { //если равно, то не печатает
-					System.out.println("Начало " + word);
-					if (word.equals("42")) {
-						break;
+				word = in.next();
+				if (!word.equals("Week")) {
+						if (word.equals("42")) {
+							break;
 					}
-				exError();
-			} else if (in.hasNextInt()) {
-					// if (num == weeks) {
-					int prog;
-					//num = in.nextInt();
-					//System.out.println(num);
-						int min = 0;
-						for (int j = 0; j < 5; j++) {
-							System.out.println("Check");
-							if (in.hasNextInt()) {
-								prog = in.nextInt();
-								if (!(prog > 0 && prog < 10)) {
-									exError();	
-									break;
-								}
-								if (j == 0)
-									min = prog;
-								else if (prog < min) {
-									min = prog;
-									//System.out.println("Min = " + min);
-								}
-							}
-							//else
-							//	break;
+					exError();
+				} else if (in.hasNextInt()) {
+                    num = in.nextInt();
+					if (num == weeks) {
+					// for (int j = 0; j < 5; j++) {
+					// 	if (in.hasNextInt()) {
+					// 		num = in.nextInt();
+					// 		System.out.println(num);
+					// 		}
+					// }
+						data = data + findMin(weeks, in);
+						System.out.println(data);
 						}
-					//}
-
+					}
 				}
 				weeks++;
-		}
-	}
+			}
+		//System.out.println(data);
+		printArrow(data, weeks);
 		in.close();
-}
+	}
 
-		static void exError() {
-			System.out.println("Illegal Argument");
-			System.exit(1);
+
+	static void exError() {
+		System.out.println("Illegal Argument");
+		System.exit(1);
+	}
+	static int findMin(int weeks, Scanner in) {
+		int num;
+		int min = 0;
+		for (int j = 0; j < 5; j++) {
+			//System.out.println("Check");
+			if (in.hasNextInt()) {
+					num = in.nextInt();
+				if (!(num > 0 && num < 10)) {
+					exError();	
+					break;
+				}
+				if (j == 0)
+					min = num;
+				else if (num < min) {
+					min = num;
+					System.out.println("Min = " + min);
+				}
+			    for (int i = 0; i < weeks - 1; i++) {
+            		min *= 10;
+				}
+			}
+		}
+		return min;
+	}
+
+		private static void printArrow(long data, int weeks) {
+		for (int i = 1; i <= weeks; i++) {
+			System.out.print("Week " + i + " ");
+			for (int j = 0; j < data % 10; j++) {
+				System.out.print("=");
+			}
+			System.out.println(">");
+			data /= 10;
+		}
 	}
 }
 
