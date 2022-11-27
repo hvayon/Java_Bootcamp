@@ -1,3 +1,4 @@
+package ex02;
 import java.util.Scanner;
 
 /* Нет обработки некорректного ввода */

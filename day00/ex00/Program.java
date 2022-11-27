@@ -1,3 +1,5 @@
+package ex00;
+
 public class Program {
 	public static void main(String[] argv) {
 		int a = 479598;
