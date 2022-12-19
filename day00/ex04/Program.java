@@ -7,7 +7,6 @@ class Program {
 	public static void main(String[] args) {
 		String word = "";
 		Scanner in = new Scanner(System.in);
-		//char[] argvChar = 
 		if (in.hasNextLine()) {
 			word = in.nextLine();
 			int[] chars = new int[MAX_CH];
@@ -25,24 +24,21 @@ class Program {
 		char[] topChars = new char[TOP_CHARS];
 		for (int i = 0; i < MAX_CH; i++) {
             charCount = chars[i];
-			//System.out.println(charCount);
 			if (charCount > 0) {
 				for (int j = 0; j < TOP_CHARS; j++)
 				{
 					if (chars[topChars[j]] < charCount) {
-						topChars = insertChars(topChars, j, (char) i); // i - буква
+						topChars = insertChars(topChars, j, (char) i);
 						break ;
 					}
 				}
 			}
 		}
-		//System.out.println(topChars);
 		printTopChar(topChars, chars);
 	}
 
 	private static char[] insertChars(char[] topChars, int position, char c) {
 		char[] newArray = new char[TOP_CHARS];
-		//System.out.println(c);
 		for (int i = 0; i < position; i++) {
 			newArray[i] = topChars[i];
 		}

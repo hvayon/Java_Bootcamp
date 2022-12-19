@@ -1,8 +1,6 @@
 package ex02;
 import java.util.Scanner;
 
-/* Нет обработки некорректного ввода */
-
 public class Program {
 	public static void main(String argv[]) {
 		Scanner in = new Scanner(System.in);
@@ -18,7 +16,7 @@ public class Program {
 			if (num == 42)
 				break;
 		}
-		System.out.println("Count of coffee-request – " + coffeeRq);
+		System.out.println("Count of coffee-request - " + coffeeRq);
 		in.close();
 	}
 

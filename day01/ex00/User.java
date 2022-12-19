@@ -2,9 +2,9 @@ package ex00;
 
 public class User {
 
-    private Integer identifier;
-    private String name;
-    private Integer balance;
+    private Integer _identifier;
+    private String _name;
+    private Integer _balance = 0;
 
     public User(String name, Integer balance) {
         setName(name);
@@ -12,30 +12,39 @@ public class User {
     }
 
     public Integer getIdentifier() {
-		return identifier;
+		return _identifier;
 	}
 
-    public void setIdentifier() {
-        this.identifier = identifier;
+    public void setIdentifier(Integer identifier) {
+        this._identifier = identifier;
     }
 
-    public String getName(void) {
-        return name;
+    public String getName() {
+        return _name;
     }
 
-    public setName(String name) {
-        this.name = name;
+    public void setName(String name) {
+        this._name = name;
     }
 
-    public Integer getBalance(void) {
-        return balance;
+    public Integer getBalance() {
+        return _balance;
     }
 
-    public setBalance(Integer balance) {
+    public void setBalance(Integer balance) {
         if (balance < 0) {
-            this.balance = 0;
+            this._balance = 0;
         } else {
-            this.balance = balance;
+            this._balance = balance;
         }
+    }
+
+	@Override
+    public String toString() {
+        return "User{" +
+                "name='" + _name + '\'' +
+                ", balance=" + _balance +
+                ", identifier=" + _identifier +
+                '}';
     }
 }

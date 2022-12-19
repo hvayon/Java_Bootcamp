@@ -20,15 +20,15 @@ class Program {
                     num = in.nextInt();
 					if (num == weeks) {
 						data = data + findMin(weeks, in);
-						}
 					}
 				}
-				weeks++;
 			}
+			weeks++;
+		}
 		printArrow(data, weeks);
 		in.close();
+		System.exit(0);
 	}
-
 
 	static void exError() {
 		System.out.println("Illegal Argument");
