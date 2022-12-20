@@ -3,46 +3,81 @@ import java.util.UUID;
 
 public class Transaction {
 	enum    Operation   {
-        debit,
-        credit
+		DEBIT,
+		CREDIT
     };
 
-	private final UUID	_identifier;
-	private User		_recipient;
-	private User		_sender;
-	private Operation	_transferCategory;
-	private Integer		_transferAmount;
+	private final String	_identifier;
+	private User			_recipient;
+	private User			_sender;
+	private Operation		_transferCategory;
+	private Integer			_transferAmount;
 
-	public Transaction(User recipient, User sender, Integer transferAmount) {
-		this._recipient = recipient;
-		this._sender = sender;
-		_identifier = UUID.randomUUID();
-
-		if (transferAmount < 0) {
-            _transferCategory = Operation.credit;
-        } else {
-            _transferCategory = Operation.debit;
-        }
-		this._transferAmount = transferAmount;
-
-		if (sender.getBalance() < _transferAmount && _transferCategory == Operation.debit ||
-		recipient.getBalance() < -1 * _transferAmount && _transferCategory == Operation.credit) {
-			System.err.println("Can't send money. Not enough balance.");
-		} else {
-			makeTransaction();
-		}
-
+	public Transaction() {
+		this._identifier = UUID.randomUUID().toString();
 	}
 
-    public void makeTransaction() {
-        if (sender.getBalance() >= this._transferAmount) {
-            sender.setBalance(_transferAmount * -1 + sender.getBalance());
-            recipient.setBalance(_transferAmount + recipient.getBalance());
+	public Transaction(User _sender, User _recipient, Operation _transferCategory, Integer _transferAmount) {
+		this._identifier = UUID.randomUUID().toString();
+		this._recipient = _recipient;
+		this._sender = _sender;
+		this._transferCategory = _transferCategory;
+		this._transferAmount = _transferAmount;
+	}
+
+	public void makeTransaction() {
+        if (_sender.getBalance() >= this._transferAmount) {
+            _sender.setBalance(_transferAmount * -1 + _sender.getBalance());
+            _recipient.setBalance(_transferAmount + _recipient.getBalance());
         }
         else
             System.err.println("Can't send money. Not enough balance.");
     }
 
-	getBalance() /*дописать геттеры, проверить подсказки */
+	public String getIdentifier() {
+		return _identifier;
+	}
+
+	public User getRecipient() {
+		return _recipient;
+	}
+
+	public User getSender() {
+		return _sender;
+	}
+
+	public Operation getTransferCategory() {
+		return _transferCategory;
+	}
+
+	public Integer getTransferAmount() {
+		return _transferAmount;
+	}
+
+	public void setRecipient(User recipient) {
+		this._recipient = recipient;
+	}
+
+	public void setSender(User sender) {
+		this._sender = sender;
+	}
 	
+	public void setTransferCategory(Operation transferCategory) {
+		this._transferCategory = transferCategory;
+	}
+
+	public void setTransferAmount(Integer transferAmount) {
+        this._transferAmount = transferAmount;
+    }
+
+	@Override
+	public String toString() {
+		return "Transaction{" +
+				"_identifier='" + _identifier + '\'' +
+				", _recipient=" + _recipient +
+				", _sender=" + _sender +
+				", _transferCategory=" + _transferCategory +
+				", _transferAmount=" + _transferAmount +
+				'}';
+	}
 }

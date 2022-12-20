@@ -9,6 +9,7 @@ public class User {
     public User(String name, Integer balance) {
         setName(name);
         setBalance(balance);
+        setIdentifier(0);
     }
 
     public Integer getIdentifier() {
@@ -39,12 +40,12 @@ public class User {
         }
     }
 
-	@Override
+    @Override
     public String toString() {
         return "User{" +
-                "name='" + _name + '\'' +
-                ", balance=" + _balance +
-                ", identifier=" + _identifier +
+                "_identifier=" + _identifier +
+                ", _name='" + _name + '\'' +
+                ", _balance=" + _balance +
                 '}';
     }
 }
