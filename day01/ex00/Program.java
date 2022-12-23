@@ -11,8 +11,8 @@ public class Program {
 		System.out.println(second);
 
 		Transaction transaction = new Transaction(
-				first,
 				second,
+				first,
 				Transaction.Operation.DEBIT,
 				1000
 		);
@@ -21,8 +21,8 @@ public class Program {
 		System.out.println(transaction);
 
 		Transaction transactionCredit = new Transaction(
-				second,
 				first,
+				second,
 				Transaction.Operation.CREDIT,
 				1000
 		);

@@ -1,4 +1,5 @@
-package ex02;
+package ex03;
+
 
 public class UsersArrayList implements UsersList {
     private int currentLength = 0;
@@ -49,5 +50,12 @@ public class UsersArrayList implements UsersList {
             res++;
         }
         return res;
+    }
+    public Integer getLength() {
+        return this.currentLength;
+    }
+
+    public Integer getCapacity() {
+        return this.listOfUser.length;
     }
 }
