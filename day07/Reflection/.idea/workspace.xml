@@ -5,17 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c102c1b3-39d2-4ce9-a76b-6fcda51a7480" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../.idea/day07.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/edu/school21/app/Program.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/edu/school21/classes/Car.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/edu/school21/classes/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/school21/app/Program.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/school21/app/Program.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/edu/school21/app/Program.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/edu/school21/app/Program.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
