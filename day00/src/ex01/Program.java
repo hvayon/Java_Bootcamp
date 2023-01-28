@@ -7,20 +7,17 @@ public class Program {
 		
        Scanner scanner = new Scanner(System.in);
 	   int exit = -1;
-	   int i = 1;
+	   int check = 2;
 	   boolean res = true;
+	   int num;
 	   if (scanner.hasNextInt()) {
-			int num;
        		if ((num = scanner.nextInt()) > 1) {
-				exit = 0;
+				   exit = 0;
 				if (num > 2) {
-					while (num > i * i++) {
-						if (num % i == 0) {
-                            res = false;
-                            break;
-                        }
+					while (check * check <= num && num % check != 0) {
+						check++;
 					}
-					i--;
+					res = check * check > num;
 				}
 			}
 	   }
@@ -28,7 +25,7 @@ public class Program {
             System.err.println("Illegal Argument");
         }
 		else {
-            System.out.println(res + " " + i);
+            System.out.println(res + " " + (check - 1));
         }
         scanner.close();
 		System.exit(exit);		
