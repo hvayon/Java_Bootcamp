@@ -7,10 +7,10 @@ import java.io.FileInputStream;
 import java.io.IOException;
 
 public class Printer {
-    private static final String PATH = "/Users/hvayon/Desktop/Java_Bootcamp._Day04-0/src/ex01/ImagesToChar/src/resources/image.bmp";
+    private static final String PATH = "/resources/image.bmp";
     public static int[][] MyImagePrinter(char white, char black) {
         try {
-            BufferedImage image = ImageIO.read(new FileInputStream(PATH));
+            BufferedImage image = ImageIO.read(Printer.class.getResource(PATH));
 
             int[][] imageSize = new int[image.getWidth()][image.getHeight()];
             for (int x = 0; x < image.getWidth(); x++) {
