@@ -32,7 +32,7 @@ class Program {
 
 	static void exError() {
 		System.out.println("Illegal Argument");
-		System.exit(1);
+		System.exit(-1);
 	}
 	static long findMin(int weeks, Scanner in) {
 		int num;

@@ -28,6 +28,6 @@ public class Program {
             System.out.println(res + " " + (check - 1));
         }
         scanner.close();
-		System.exit(exit);		
+		System.exit(exit);
 	}
 }

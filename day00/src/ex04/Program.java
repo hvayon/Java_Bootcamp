@@ -1,83 +1,113 @@
 package ex04;
 import java.util.Scanner;
 
-class Program {
-	private static final int MAX_CH = 65535;
-	private static final int TOP_CHARS = 10;
+public class Program {
+	private static final short CH = 10;
+	private static final int MAX_SH = 65535;
 	public static void main(String[] args) {
-		String word = "";
-		Scanner in = new Scanner(System.in);
-		if (in.hasNextLine()) {
-			word = in.nextLine();
-			int[] chars = new int[MAX_CH];
-			char[] charArray = word.toCharArray();
-			for (int i = 0; i < word.length(); i++) {
-				chars[charArray[i]]++;
+		Scanner input = new Scanner(System.in);
+		String  word = "";
+		short[] asc_num = new short[CH];
+		short[] asc_key = new short[CH];
+		if (input.hasNextLine()) {
+			word = input.nextLine();
+			char[]  sym = word.toCharArray();
+			short[] key = new short[MAX_SH];
+			if (word.length() < 1000 && word.length() > 0) {
+				for (int i = 0; i < word.length(); i++) {
+					key[(short)sym[i]]++;
+				}
+				findTenSym(asc_num, asc_key, key);
 			}
-			makeTopChars(chars);
- 		}
-		in.close();
+		} else {
+			errorEnd();
+		}
+		input.close();
+		System.exit(0);
 	}
 
-	private static void makeTopChars(int[] chars) {
-		int charCount;
-		char[] topChars = new char[TOP_CHARS];
-		for (int i = 0; i < MAX_CH; i++) {
-            charCount = chars[i];
-			if (charCount > 0) {
-				for (int j = 0; j < TOP_CHARS; j++)
-				{
-					if (chars[topChars[j]] < charCount) {
-						topChars = insertChars(topChars, j, (char) i);
-						break ;
-					}
+	private static void errorEnd() {
+		System.err.println("Illegal Argument");
+		System.exit(-1);
+	}
+
+	private static void sortBub(short[] num, short[] key, short len) {
+		boolean isSorted = false;
+		short   buf;
+
+		while(!isSorted) {
+			isSorted = true;
+			for (int i = len - 1; i > 0; i--) {
+				if(num[i] > num[i - 1]){
+					isSorted = false;
+					buf = num[i];
+					num[i] = num[i - 1];
+					num[i - 1] = buf;
+					buf = key[i];
+					key[i] = key[i - 1];
+					key[i - 1] = buf;
 				}
 			}
 		}
-		printTopChar(topChars, chars);
 	}
 
-	private static char[] insertChars(char[] topChars, int position, char c) {
-		char[] newArray = new char[TOP_CHARS];
-		for (int i = 0; i < position; i++) {
-			newArray[i] = topChars[i];
+	private static void printer(short counter, short[] asc_num, short[] asc_key) {
+		short   max_num = asc_num[0];
+		short   c = 0;
+		short[] per_num = new short[counter];
+		short   flag = 0;
+		for (short i = 0; i < counter; i++) {
+			per_num[i] = (short)((asc_num[i] * CH) / max_num);
 		}
-		newArray[position] = c;
-		for (int i = position + 1; i < TOP_CHARS; i++) {
-            newArray[i] = topChars[i - 1];
-        }
-		return newArray;
+		while (c < CH + 1) {
+			for(int j = 0; j < counter; j++) {
+				if (j < flag){
+					System.out.print("  #");
+				} else if (per_num[j] == CH - c) {
+					System.out.printf("%3d", asc_num[j]);
+					flag++;
+				} else if (per_num[j] > CH - c) {
+					System.out.print("  #");
+				}
+
+			}
+			System.out.println();
+			c++;
+		}
+		for(int j = 0; j < counter; j++) {
+			System.out.printf("%3c", (char)asc_key[j]);
+		}
+		System.out.println();
 	}
 
-	private static void printTopChar(char[] topChars, int[] chars) {
-        int max = chars[topChars[0]];
-        int height = max <= 10 ? max : 10;
-        int[] scaledArray = new int[TOP_CHARS];
-        for (int i = 0; i < TOP_CHARS; i++) {
-            if (max <= 10) {
-                scaledArray[i] = chars[topChars[i]];
-            } else {
-                scaledArray[i] = chars[topChars[i]] * 10 / max;
-            }
-        }
-        System.out.println();
-        for (int i = 0; i < height + 2; i++) {
-            for (int j = 0; j < TOP_CHARS; j++) {
-                if (topChars[j] != 0) {
-                    if (i + scaledArray[j] + 2 == height + 2) {
-                        System.out.printf("%3d", chars[topChars[j]]);
-                    } else if (i == height + 1) {
-                        System.out.printf("%3c", topChars[j]);
-                    } else if (i + scaledArray[j] >= height) {
-                        System.out.printf("%3c", '#');
-                    }
-                    if (j != TOP_CHARS - 1 && topChars[j + 1] != 0 && i + scaledArray[j + 1] >= height) {
-                        System.out.printf("%c", ' ');
-                    }
-                }
-            }
-            System.out.println();
-        }
-    }
-}
+	private static void findTenSym(short[] asc_num, short[] asc_key, short[] key) {
+		short   counter = 0;
 
+		for (int i = 0; i < MAX_SH; i++) {
+			if (key[i] != 0) {
+				counter++;
+			}
+		}
+		short[] tmp_num = new short[counter];
+		short[] tmp_key = new short[counter];
+		counter = 0;
+		for (int i = 0; i < MAX_SH; i++) {
+			if (key[i] != 0) {
+				tmp_num[counter] = key[i];
+				tmp_key[counter] = (short)i;
+				counter++;
+			}
+		}
+		sortBub(tmp_num, tmp_key, counter);
+		if (counter > CH){
+			counter = CH;
+		}
+		asc_num = new short[counter];
+		asc_key = new short[counter];
+		for (int i = 0; i < counter; i++) {
+			asc_key[i] = tmp_key[i];
+			asc_num[i] = tmp_num[i];
+		}
+		printer(counter, asc_num, asc_key);
+	}
+}
